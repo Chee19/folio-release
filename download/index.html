@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Download Folio</title>
+    <meta
+      name="description"
+      content="Download Folio, a free desktop app for tracking stocks and crypto, for macOS or Windows."
+    />
+    <meta name="theme-color" content="#f7f5f0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Download Folio" />
+    <meta
+      property="og:description"
+      content="Download Folio, a free desktop app for tracking stocks and crypto, for macOS or Windows."
+    />
+    <link rel="icon" href="../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../assets/icon-192.png" />
+    <link
+      rel="preload"
+      href="../assets/fonts/instrument-serif-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../assets/site.css" />
+    <script type="module" src="../assets/site.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="wrap nav">
+      <a class="brand" href="../" aria-label="Folio home">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="112" fill="#172031" />
+          <path d="M144 356V156h224v56H208v40h120v56H208v48z" fill="#a9befd" />
+        </svg>
+        <span>Folio</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a class="nav-optional" href="../#research">Research</a>
+        <a class="nav-optional" href="../#features">Features</a>
+        <a href="../#how">How it works</a>
+        <a class="btn btn-sm" href="./" aria-current="page">Download</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="wrap page-head" aria-labelledby="page-title">
+        <h1 id="page-title">Download Folio</h1>
+        <p>Free public beta for macOS and Windows.</p>
+        <p class="mobile-note" data-mobile-note hidden>
+          Folio is a desktop app. Open this page on your Mac or PC to download.
+        </p>
+      </section>
+
+      <section class="wrap" aria-label="Installers">
+        <div class="downloads" data-downloads>
+          <article class="os-card" data-os="mac" id="mac">
+            <p class="os-tag" data-os-tag hidden>For this computer</p>
+            <h2>macOS</h2>
+            <p class="os-detail">Universal · Apple silicon and Intel</p>
+            <a
+              class="btn"
+              href="https://github.com/Chee19/folio-release/releases/latest/download/Folio-mac-universal.dmg"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 2.5v8m0 0 3.25-3.25M8 10.5 4.75 7.25M3 13.5h10" />
+              </svg>
+              Download .dmg
+            </a>
+          </article>
+          <article class="os-card" data-os="windows" id="windows">
+            <p class="os-tag" data-os-tag hidden>For this computer</p>
+            <h2>Windows</h2>
+            <p class="os-detail">Windows 10 and 11 · 64-bit</p>
+            <a
+              class="btn"
+              href="https://github.com/Chee19/folio-release/releases/latest/download/Folio-win-x64.exe"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 2.5v8m0 0 3.25-3.25M8 10.5 4.75 7.25M3 13.5h10" />
+              </svg>
+              Download .exe
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="wrap section"
+        id="first-launch"
+        aria-labelledby="first-launch-title"
+      >
+        <h2 class="section-title" id="first-launch-title">First launch</h2>
+        <p class="section-lede">
+          Folio isn’t code-signed during the beta, so your computer asks you to
+          confirm it once.
+        </p>
+        <div class="steps-grid" data-steps>
+          <div data-os="mac">
+            <h3>macOS</h3>
+            <ol class="steps">
+              <li>Open the .dmg and drag Folio into Applications.</li>
+              <li>
+                Open Folio. When macOS says it can’t verify the app, choose
+                <strong>Done</strong>.
+              </li>
+              <li>
+                Open System Settings, then Privacy &amp; Security, and choose
+                <strong>Open Anyway</strong>.
+              </li>
+            </ol>
+            <p class="aside">
+              You’ll confirm again after each update until Folio is signed.
+            </p>
+            <details class="terminal">
+              <summary>Comfortable with Terminal?</summary>
+              <pre><code>xattr -dr com.apple.quarantine /Applications/Folio.app</code></pre>
+              <p>Run it after installing, then open Folio as usual.</p>
+            </details>
+          </div>
+          <div data-os="windows">
+            <h3>Windows</h3>
+            <ol class="steps">
+              <li>Run the installer.</li>
+              <li>
+                If you see “Windows protected your PC”, choose
+                <strong>More info</strong>, then <strong>Run anyway</strong>.
+              </li>
+              <li>Folio opens when the installation finishes.</li>
+            </ol>
+            <p class="aside">
+              PCs with Smart App Control switched on block unsigned apps, so
+              Folio can’t run there yet.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap section split" aria-labelledby="keys-title">
+        <div class="split-head">
+          <h2 class="section-title" id="keys-title">Then add your free keys</h2>
+        </div>
+        <div class="split-body">
+          <ul class="keys">
+            <li>
+              <span class="label">Stocks</span>
+              <span>
+                Create a free
+                <a href="https://app.alpaca.markets">Alpaca</a> account and
+                generate paper-trading API keys.
+              </span>
+            </li>
+            <li>
+              <span class="label">Crypto</span>
+              <span>
+                Get a free Basic API key from
+                <a href="https://coinmarketcap.com/api/">CoinMarketCap</a>.
+              </span>
+            </li>
+          </ul>
+          <p class="section-lede">
+            Paste them into Settings in Folio. They stay on your computer.
+          </p>
+        </div>
+      </section>
+
+      <section class="wrap section split" aria-labelledby="updates-title">
+        <div class="split-head">
+          <h2 class="section-title" id="updates-title">Updates</h2>
+        </div>
+        <div class="split-body">
+          <p class="section-lede">
+            Folio tells you when a new version is ready. Install it over the old
+            one; your data stays.
+          </p>
+          <p class="more">
+            <a href="https://github.com/Chee19/folio-release/releases"
+              >All versions and release notes<svg
+                class="ext"
+                viewBox="0 0 12 12"
+                aria-hidden="true"
+              >
+                <path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" /></svg
+            ></a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap footer">
+      <p>Folio is not financial advice.</p>
+      <p>
+        <a href="https://github.com/Chee19/folio-release/releases"
+          >All versions</a
+        >
+        <span aria-hidden="true"> · </span>© 2026 Folio
+      </p>
+    </footer>
+  </body>
+</html>

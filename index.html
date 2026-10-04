@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Folio · Free stock and crypto portfolio tracker</title>
+    <meta
+      name="description"
+      content="Track all your stocks and crypto in one place, in pounds, euros or dollars, with optional daily AI research. A free, private desktop app for macOS and Windows. No account needed."
+    />
+    <meta name="theme-color" content="#f7f5f0" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Folio · Free stock and crypto portfolio tracker"
+    />
+    <meta
+      property="og:description"
+      content="All your stocks and crypto in one place, in pounds, euros or dollars. Free, private, and no account to create."
+    />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/instrument-serif-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script type="module" src="assets/site.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="wrap nav">
+      <a class="brand" href="./" aria-label="Folio home">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="112" fill="#172031" />
+          <path d="M144 356V156h224v56H208v40h120v56H208v48z" fill="#a9befd" />
+        </svg>
+        <span>Folio</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a class="nav-optional" href="#research">Research</a>
+        <a class="nav-optional" href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a class="btn btn-sm" href="download/">Download</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="wrap hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Now in free public beta</p>
+          <h1 class="hero-title" id="hero-title">
+            Your portfolio.<br /><em>On your machine.</em>
+          </h1>
+        </div>
+        <div class="hero-side">
+          <p class="lede">
+            All your stocks and crypto in one place, in pounds, euros or
+            dollars. Free, private, and no account to create.
+          </p>
+          <div data-cta>
+            <div class="cta">
+              <a class="btn" href="download/" data-cta-primary>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8 2.5v8m0 0 3.25-3.25M8 10.5 4.75 7.25M3 13.5h10" />
+                </svg>
+                <span data-cta-label>Download</span>
+              </a>
+              <a class="cta-alt" href="download/" data-cta-alt hidden
+                >Also on Windows</a
+              >
+            </div>
+            <p class="cta-note">
+              Free for macOS and Windows · No account · No tracking
+            </p>
+            <p class="cta-hint" data-cta-hint="mac" hidden>
+              Downloading. The first time, macOS asks you to confirm.
+              <a href="download/#first-launch">See how</a>
+            </p>
+            <p class="cta-hint" data-cta-hint="windows" hidden>
+              Downloading. The first time, Windows asks you to confirm.
+              <a href="download/#first-launch">See how</a>
+            </p>
+          </div>
+          <p class="mobile-note" data-mobile-note hidden>
+            Folio is a desktop app. Open this page on your Mac or PC to
+            download.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="showcase"
+        aria-label="Folio overview with a sample portfolio"
+      >
+        <div class="wrap">
+          <figure class="figure" data-replica>
+            <div class="replica">
+              <div class="replica-bar" aria-hidden="true">
+                <i></i><i></i><i></i><span>Folio · Overview</span>
+              </div>
+              <div class="replica-body">
+                <div class="replica-head">
+                  <div>
+                    <p class="label">Portfolio value</p>
+                    <p class="total" data-total aria-live="polite">
+                      £16,410.98
+                    </p>
+                    <p class="priced">3 of 4 priced</p>
+                  </div>
+                  <div
+                    class="switch"
+                    role="group"
+                    aria-label="Display currency"
+                    data-switch
+                    hidden
+                  >
+                    <button
+                      type="button"
+                      data-currency="GBP"
+                      aria-pressed="true"
+                    >
+                      £ GBP
+                    </button>
+                    <button
+                      type="button"
+                      data-currency="EUR"
+                      aria-pressed="false"
+                    >
+                      € EUR
+                    </button>
+                    <button
+                      type="button"
+                      data-currency="USD"
+                      aria-pressed="false"
+                    >
+                      $ USD
+                    </button>
+                  </div>
+                </div>
+                <svg
+                  class="spark"
+                  viewBox="0 0 600 96"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
+                      <stop
+                        offset="0"
+                        stop-color="#a9befd"
+                        stop-opacity="0.45"
+                      />
+                      <stop offset="1" stop-color="#a9befd" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0 72 C40 68 62 76 92 66 S150 52 182 58 S240 40 272 46 S332 30 362 36 S424 52 454 40 S520 22 560 26 S590 18 600 14 L600 96 L0 96 Z"
+                    fill="url(#spark-fill)"
+                  />
+                  <path
+                    class="spark-line"
+                    d="M0 72 C40 68 62 76 92 66 S150 52 182 58 S240 40 272 46 S332 30 362 36 S424 52 454 40 S520 22 560 26 S590 18 600 14"
+                  />
+                </svg>
+                <table class="holdings">
+                  <caption class="visually-hidden">
+                    Sample holdings
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Holding</th>
+                      <th scope="col" class="col-type">Type</th>
+                      <th scope="col" class="num">Value</th>
+                      <th scope="col" class="num">Day</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-gbp="4120.55" data-paid="USD">
+                      <td>
+                        <span class="sym">AAPL</span
+                        ><span class="name">Apple</span>
+                      </td>
+                      <td class="col-type"><span class="badge">Stock</span></td>
+                      <td class="num">
+                        <span class="ecb" data-ecb>ECB rate</span
+                        ><span class="value" data-value>£4,120.55</span>
+                      </td>
+                      <td class="num up">+3.2%</td>
+                    </tr>
+                    <tr data-row data-gbp="9880.10" data-paid="GBP">
+                      <td>
+                        <span class="sym">BTC</span
+                        ><span class="name">Bitcoin</span>
+                      </td>
+                      <td class="col-type">
+                        <span class="badge crypto">Crypto</span>
+                      </td>
+                      <td class="num">
+                        <span class="ecb" data-ecb hidden>ECB rate</span
+                        ><span class="value" data-value>£9,880.10</span>
+                      </td>
+                      <td class="num down">−1.1%</td>
+                    </tr>
+                    <tr data-row data-gbp="2410.33" data-paid="EUR">
+                      <td>
+                        <span class="sym">ETH</span
+                        ><span class="name">Ethereum</span>
+                      </td>
+                      <td class="col-type">
+                        <span class="badge crypto">Crypto</span>
+                      </td>
+                      <td class="num">
+                        <span class="ecb" data-ecb>ECB rate</span
+                        ><span class="value" data-value>£2,410.33</span>
+                      </td>
+                      <td class="num up">+0.8%</td>
+                    </tr>
+                    <tr data-row data-paid="GBP">
+                      <td>
+                        <span class="sym">SMT</span
+                        ><span class="name">Scottish Mortgage</span>
+                      </td>
+                      <td class="col-type"><span class="badge">Stock</span></td>
+                      <td class="num">
+                        <span class="unknown">Price unavailable</span>
+                      </td>
+                      <td class="num muted">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <figcaption class="caption">
+              Sample portfolio. Tap £ € $ to switch currency.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="wrap section" aria-labelledby="why-title">
+        <h2 class="visually-hidden" id="why-title">Why Folio</h2>
+        <div class="entries">
+          <article class="entry">
+            <p class="entry-num">01</p>
+            <h3>All in one place</h3>
+            <p>
+              Your stocks and crypto side by side, with charts, a watchlist and
+              performance over time.
+            </p>
+          </article>
+          <article class="entry">
+            <p class="entry-num">02</p>
+            <h3>Every currency</h3>
+            <p>
+              Buy in dollars, think in pounds. Every trade keeps the currency
+              you paid, converted at official ECB rates.
+            </p>
+          </article>
+          <article class="entry">
+            <p class="entry-num">03</p>
+            <h3>Private by design</h3>
+            <p>
+              No sign-up, no cloud, no tracking. Your portfolio lives on your
+              computer, not on someone else’s server.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="wrap section research"
+        id="research"
+        aria-labelledby="research-title"
+      >
+        <div class="research-copy">
+          <p class="eyebrow">AI research desk</p>
+          <h2 class="section-title" id="research-title">
+            Your own research desk, every day.
+          </h2>
+          <p class="section-lede">
+            Folio reads the market for you once a day: what moved your holdings,
+            the news that matters, and ideas worth a closer look, with sources
+            linked.
+          </p>
+          <ul class="research-points">
+            <li>
+              <h3>Market backdrop</h3>
+              <p>
+                The big picture in one read: rates, trade, geopolitics and
+                sentiment.
+              </p>
+            </li>
+            <li>
+              <h3>Your holdings, researched</h3>
+              <p>
+                News, analyst rating trends and earnings notes for everything
+                you own or watch.
+              </p>
+            </li>
+            <li>
+              <h3>New ideas</h3>
+              <p>
+                Up to eight a day, with the reasoning shown and one tap to your
+                watchlist.
+              </p>
+            </li>
+            <li>
+              <h3>Ask anything</h3>
+              <p>
+                Ask about your portfolio in plain English and get answers built
+                from your own numbers.
+              </p>
+            </li>
+          </ul>
+          <p class="research-note">
+            Optional. Runs through the Codex CLI on your computer with your own
+            ChatGPT plan, and sends your holdings to it for research.
+            Machine-generated research, not financial advice.
+          </p>
+        </div>
+        <figure class="brief">
+          <div class="replica">
+            <div class="replica-bar" aria-hidden="true">
+              <i></i><i></i><i></i><span>Folio · Signals</span>
+            </div>
+            <div class="brief-body">
+              <div class="brief-head">
+                <p class="label">Daily brief</p>
+                <p class="brief-tag">Sample</p>
+              </div>
+              <div class="brief-block">
+                <p class="label">Market backdrop</p>
+                <p class="brief-regime">Mixed</p>
+                <p class="brief-text">
+                  Rates on hold, trade tensions rising, tech sentiment firm.
+                </p>
+              </div>
+              <div class="brief-block">
+                <p class="label">What matters now</p>
+                <ul class="brief-list">
+                  <li>
+                    <span class="sym">AAPL</span
+                    ><span>Earnings next week; analyst ratings mixed.</span>
+                  </li>
+                  <li>
+                    <span class="sym">BTC</span
+                    ><span>Moving with wider risk appetite.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="brief-block">
+                <p class="label">Idea to research</p>
+                <div class="brief-idea">
+                  <div>
+                    <p class="brief-idea-title">Supply-chain lag</p>
+                    <p class="brief-text">
+                      Suppliers yet to price in rising AI demand.
+                    </p>
+                  </div>
+                  <span class="brief-add">+ Watchlist</span>
+                </div>
+              </div>
+              <p class="brief-sources">3 sources linked</p>
+            </div>
+          </div>
+          <figcaption class="caption">
+            Sample brief. Your report covers what you own and watch.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section
+        class="wrap section split"
+        id="features"
+        aria-labelledby="features-title"
+      >
+        <div class="split-head">
+          <p class="eyebrow">Features</p>
+          <h2 class="section-title" id="features-title">
+            Built for the details.
+          </h2>
+          <p class="section-lede">
+            The small things that make a tracker worth trusting.
+          </p>
+        </div>
+        <ul class="features split-body">
+          <li>
+            <h3>Import your history</h3>
+            <p>Bring in past trades from a CSV file in one go.</p>
+          </li>
+          <li>
+            <h3>Performance over time</h3>
+            <p>
+              See how your portfolio has grown, not just what it’s worth today.
+            </p>
+          </li>
+          <li>
+            <h3>A watchlist</h3>
+            <p>Keep an eye on ideas before you buy.</p>
+          </li>
+          <li>
+            <h3>Pro-grade charts</h3>
+            <p>TradingView charts for every stock and coin.</p>
+          </li>
+          <li>
+            <h3>Honest totals</h3>
+            <p>Missing prices are flagged, never counted as zero.</p>
+          </li>
+          <li>
+            <h3>Automatic backups</h3>
+            <p>Folio backs up your data before an update changes it.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="wrap section split" id="how" aria-labelledby="how-title">
+        <div class="split-head">
+          <p class="eyebrow">How it works</p>
+          <h2 class="section-title" id="how-title">
+            From download to dashboard in minutes.
+          </h2>
+          <p class="section-lede">
+            No subscription. No bank or broker logins. Just your portfolio, on
+            your terms.
+          </p>
+          <a class="btn how-cta" href="download/">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 2.5v8m0 0 3.25-3.25M8 10.5 4.75 7.25M3 13.5h10" />
+            </svg>
+            Download free
+          </a>
+        </div>
+        <ol class="how-steps split-body">
+          <li>
+            <span class="how-num" aria-hidden="true">1</span>
+            <div>
+              <h3>Download Folio</h3>
+              <p>Free for macOS and Windows. No Folio account needed.</p>
+            </div>
+          </li>
+          <li>
+            <span class="how-num" aria-hidden="true">2</span>
+            <div>
+              <h3>Turn on price updates</h3>
+              <p>
+                Two free sign-ups, Alpaca for stocks and CoinMarketCap for
+                crypto, keep your prices fresh.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="how-num" aria-hidden="true">3</span>
+            <div>
+              <h3>Add what you own</h3>
+              <p>
+                Search a ticker or coin and enter what you paid. Folio works out
+                your value, gains and currencies.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <p class="hood">
+          <span class="label">Under the hood</span>
+          <span>
+            Runs locally on your machine · One local SQLite file · ECB exchange
+            rates · No telemetry · Optional AI via your own Codex CLI
+          </span>
+        </p>
+      </section>
+
+      <section
+        class="wrap section split story"
+        id="story"
+        aria-labelledby="story-title"
+      >
+        <div class="split-head">
+          <p class="eyebrow">Why I built it</p>
+          <h2 class="section-title story-title" id="story-title">
+            <span class="story-lead"
+              >I kept adding tools to simplify my investing.</span
+            >
+            Eventually, I had to simplify the tools.
+          </h2>
+        </div>
+        <div class="split-body story-body">
+          <p>
+            I was paying for investing tools I barely used, and still switching
+            between apps to understand my own portfolio. Trades, holdings,
+            performance, watchlists and research were scattered everywhere.
+          </p>
+          <p>
+            So I built Folio around how I actually manage my stocks and crypto,
+            with my records on my own computer from day one. I’ve since
+            cancelled the subscriptions it replaced.
+          </p>
+          <p>
+            I built it solo: a couple of days working out the product and its
+            rules first, then AI did much of the coding while I steered. Inside
+            Folio, AI powers the insights on your portfolio, while your numbers
+            come from your recorded trades and fixed calculation rules.
+          </p>
+          <p>
+            Now I’d like to find where your habits expose something I’ve missed.
+            Try one of your usual workflows and tell me the first thing that
+            feels confusing, cumbersome or missing.
+          </p>
+          <p class="story-sign">
+            <a
+              class="story-link"
+              href="https://github.com/Chee19/folio-release/issues/new"
+              >Tell me what you find</a
+            >
+            <span>— Sean, Folio</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="band-title">
+        <div class="wrap band-inner">
+          <h2 id="band-title">
+            Your whole portfolio,<br /><em>in one place.</em>
+          </h2>
+          <div class="band-cta">
+            <a class="btn btn-light" href="download/">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 2.5v8m0 0 3.25-3.25M8 10.5 4.75 7.25M3 13.5h10" />
+              </svg>
+              Download Folio
+            </a>
+            <p class="band-note">Free while in beta · macOS and Windows</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap footer">
+      <p>Folio is not financial advice.</p>
+      <p>
+        <a href="https://github.com/Chee19/folio-release/releases"
+          >All versions</a
+        >
+        <span aria-hidden="true"> · </span>© 2026 Folio
+      </p>
+    </footer>
+  </body>
+</html>
