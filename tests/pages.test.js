@@ -245,7 +245,7 @@ test("the terms disclaim liability only as far as UK law allows", () => {
   for (const line of [
     "provided “as is”",
     "is financial, investment, tax or legal advice",
-    "neither Sean nor anyone else involved in Folio is liable",
+    "neither Delphi nor anyone else involved in Folio is liable",
     "You are solely responsible for how you use Folio",
     // Without this carve-out a court can strike the whole exclusion clause.
     "cannot be limited or excluded by law, such as liability for death or personal injury caused by negligence, or for fraud",
