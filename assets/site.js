@@ -8,6 +8,11 @@ export const DOWNLOADS = {
 
 const OS_NAMES = { mac: "macOS", windows: "Windows" };
 
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+// Web3Forms keys are public by design; they map to the inbox without exposing it.
+const FORM_KEY = "83d848bd-db78-4bf3-a3da-3366561679b6";
+const REGISTERED = "folio-registered";
+
 export function detectPlatform(
   userAgent = "",
   mobileHint = false,
@@ -44,6 +49,24 @@ export function formatMoney(amount, currency) {
     currency,
     currencyDisplay: "narrowSymbol",
   }).format(amount);
+}
+
+export function registration(fields, download) {
+  const { newsletter, ...rest } = fields;
+  return {
+    ...rest,
+    access_key: FORM_KEY,
+    subject: "New Folio beta sign-up",
+    // Explicit yes or no, so each email doubles as the consent record.
+    newsletter: newsletter ? "yes" : "no",
+    download: download.split("/").pop(),
+  };
+}
+
+// Runs when the form service fails; status is the HTTP status, or 0 if no answer came back.
+// Return true to start the download anyway, or false to keep them on the form to retry.
+export function letThroughOnFailure(status) {
+  // TODO(you): decide the failure policy.
 }
 
 function showHint(cta, os) {
@@ -130,6 +153,77 @@ function setupReplica(root) {
   root.querySelector("[data-switch]").hidden = false;
 }
 
+function isRegistered() {
+  try {
+    return localStorage.getItem(REGISTERED) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setupGate(dialog) {
+  const form = dialog.querySelector("form");
+  const submit = form.querySelector('[type="submit"]');
+  const error = dialog.querySelector("[data-gate-error]");
+  // Remembered so the app's update link to this page doesn't ask again.
+  let cleared = isRegistered();
+  let pending = null;
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const link = event.target.closest("a");
+      if (cleared || !link || !Object.values(DOWNLOADS).includes(link.href))
+        return;
+      event.preventDefault();
+      // Capture phase, so the home page's "Downloading" hint waits for the form.
+      event.stopPropagation();
+      pending = link;
+      error.hidden = true;
+      dialog.showModal();
+    },
+    true,
+  );
+
+  dialog
+    .querySelector("[data-gate-close]")
+    .addEventListener("click", () => dialog.close());
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    submit.disabled = true;
+    let status = 0;
+    let ok = false;
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(
+          registration(Object.fromEntries(new FormData(form)), pending.href),
+        ),
+      });
+      status = response.status;
+      ok = (await response.json()).success === true;
+    } catch {}
+    submit.disabled = false;
+    if (!ok && !letThroughOnFailure(status)) {
+      error.hidden = false;
+      return;
+    }
+    if (ok) {
+      try {
+        localStorage.setItem(REGISTERED, "1");
+      } catch {}
+    }
+    cleared = true;
+    dialog.close();
+    pending.click();
+  });
+}
+
 // Browser-only wiring; the tests import the pure functions above under Node.
 if (typeof document !== "undefined") {
   setupDownloads(
@@ -141,4 +235,7 @@ if (typeof document !== "undefined") {
   );
   const replica = document.querySelector("[data-replica]");
   if (replica) setupReplica(replica);
+  const gate = document.querySelector("[data-gate]");
+  // Browsers without <dialog> skip the form and download directly.
+  if (gate?.showModal) setupGate(gate);
 }

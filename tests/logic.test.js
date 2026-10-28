@@ -5,6 +5,7 @@ import {
   convertHoldings,
   detectPlatform,
   formatMoney,
+  registration,
 } from "../assets/site.js";
 
 const SAMPLE = [4120.55, 9880.1, 2410.33, null];
@@ -60,5 +61,23 @@ test("download links are the permanent release links", () => {
   assert.equal(
     DOWNLOADS.windows,
     "https://github.com/Chee19/folio-release/releases/latest/download/Folio-win-x64.exe",
+  );
+});
+
+test("sign-ups record newsletter consent as an explicit yes or no", () => {
+  const person = { name: "Ada", email: "ada@example.com" };
+  const unticked = registration(person, DOWNLOADS.mac);
+  assert.equal(unticked.newsletter, "no");
+  assert.equal(unticked.email, "ada@example.com");
+  assert.equal(unticked.download, "Folio-mac-universal.dmg");
+  assert.ok(unticked.access_key);
+  assert.equal(
+    registration({ ...person, newsletter: "on" }, DOWNLOADS.windows).newsletter,
+    "yes",
+  );
+  // A field named like the key must not redirect submissions to another inbox.
+  assert.notEqual(
+    registration({ ...person, access_key: "x" }, DOWNLOADS.mac).access_key,
+    "x",
   );
 });

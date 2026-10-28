@@ -10,6 +10,8 @@ Folio is a free desktop app for tracking stocks and crypto, with your records ke
 
 This repository holds Folio's release installers and the source of its website: plain HTML, CSS and one small JavaScript module, with no build step and no dependencies.
 
+Download buttons open a name and email form first. Each sign-up is emailed to hello@delphi-engine.com through [Web3Forms](https://web3forms.com); the access key is `FORM_KEY` in `assets/site.js`. Download counts per installer are on each release's assets via the GitHub API.
+
 ### Preview locally
 
 ```bash

@@ -30,7 +30,7 @@ const HOME_COPY = [
   "Every currency",
   "Buy in dollars, think in pounds. Every trade keeps the currency you paid, converted at official ECB rates.",
   "Private by design",
-  "No sign-up, no cloud, no tracking. Your portfolio lives on your computer, not on someone else’s server.",
+  "No account, no cloud, no tracking. Your portfolio lives on your computer, not on someone else’s server.",
   "AI research desk",
   "Your own research desk, every day.",
   "Folio reads the market for you once a day: what moved your holdings, the news that matters, and ideas worth a closer look, with sources linked.",
@@ -66,7 +66,7 @@ const HOME_COPY = [
   "No subscription. No bank or broker logins. Just your portfolio, on your terms.",
   "Download free",
   "Download Folio",
-  "Free for macOS and Windows. No Folio account needed.",
+  "Free for macOS and Windows. Just your name and email, no account.",
   "Turn on price updates",
   "Two free sign-ups, Alpaca for stocks and CoinMarketCap for crypto, keep your prices fresh.",
   "Add what you own",
@@ -201,6 +201,30 @@ test("download page links both permanent installers and orders mac before window
     download,
     /data-steps[\s\S]*data-os="mac"[\s\S]*data-os="windows"/,
   );
+});
+
+test("both pages ask for name and email with the same consent copy, and the newsletter is opt-in", () => {
+  const consent = [
+    "Join the Folio beta",
+    "Also send me the Folio newsletter",
+    "We’ll email you beta updates and the occasional feedback survey. Unsubscribe any time.",
+  ];
+  for (const [name, html] of [
+    ["home", home],
+    ["download", download],
+  ]) {
+    assert.match(
+      html,
+      /<dialog [^>]*data-gate/,
+      `${name} has no download form`,
+    );
+    assert.match(html, /name="name"[^>]*required/);
+    assert.match(html, /name="email" type="email"[^>]*required/);
+    for (const line of consent)
+      assert.ok(html.includes(line), `${name} form is missing: ${line}`);
+    // Pre-ticked marketing consent is not valid consent under UK GDPR.
+    assert.doesNotMatch(html, /name="newsletter"[^>]*checked/);
+  }
 });
 
 test("replica holds four rows and leaves the unpriced holding out of the total", () => {
