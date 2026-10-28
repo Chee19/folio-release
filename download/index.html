@@ -199,5 +199,44 @@
         <span aria-hidden="true"> · </span>© 2026 Folio
       </p>
     </footer>
+
+    <dialog class="gate" data-gate aria-labelledby="gate-title">
+      <form class="gate-form">
+        <h2 id="gate-title">Join the Folio beta</h2>
+        <p class="gate-lede">Your download starts as soon as you send this.</p>
+        <label>
+          Name
+          <input name="name" autocomplete="name" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label class="gate-check">
+          <input name="newsletter" type="checkbox" />
+          Also send me the Folio newsletter
+        </label>
+        <input
+          name="botcheck"
+          type="checkbox"
+          tabindex="-1"
+          autocomplete="off"
+          hidden
+        />
+        <p class="gate-note">
+          We’ll email you beta updates and the occasional feedback survey.
+          Unsubscribe any time.
+        </p>
+        <p class="gate-error" data-gate-error role="alert" hidden>
+          That didn’t send. Check your connection and try again.
+        </p>
+        <div class="gate-actions">
+          <button class="btn" type="submit">Download</button>
+          <button class="gate-close" type="button" data-gate-close>
+            Not now
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

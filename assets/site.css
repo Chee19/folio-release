@@ -1153,6 +1153,100 @@ a:hover {
   margin-top: 20px;
 }
 
+/* Download form */
+
+.gate {
+  width: min(440px, 100% - 32px);
+  padding: 32px;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.gate::backdrop {
+  background: rgb(23 32 49 / 0.5);
+}
+
+.gate-form {
+  display: grid;
+  gap: 16px;
+}
+
+.gate h2 {
+  font: 400 36px/1 var(--serif);
+  letter-spacing: -0.01em;
+}
+
+.gate-lede,
+.gate-note {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.gate label {
+  display: grid;
+  gap: 6px;
+  font-size: 15px;
+}
+
+.gate input:not([type="checkbox"]) {
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.gate .gate-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gate-check input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent-ink);
+}
+
+.gate-error {
+  color: var(--loss);
+  font-size: 15px;
+}
+
+.gate-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.gate .btn {
+  border: 0;
+  cursor: pointer;
+}
+
+.gate .btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.gate-close {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.gate-close:hover {
+  color: var(--ink);
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
