@@ -1153,6 +1153,35 @@ a:hover {
   margin-top: 20px;
 }
 
+/* Privacy notice */
+
+.prose {
+  padding-bottom: clamp(64px, 9vw, 112px);
+}
+
+.prose > * {
+  max-width: 68ch;
+}
+
+.prose h2 {
+  margin: 48px 0 14px;
+  font: 400 34px/1.1 var(--serif);
+  letter-spacing: -0.01em;
+}
+
+.prose p,
+.prose ul {
+  margin: 0 0 14px;
+}
+
+.prose ul {
+  padding-left: 1.2em;
+}
+
+.prose li + li {
+  margin-top: 8px;
+}
+
 /* Download form */
 
 .gate {

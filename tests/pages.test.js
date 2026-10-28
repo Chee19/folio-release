@@ -10,6 +10,8 @@ function page(path) {
 const flat = (html) => html.replace(/\s+/g, " ");
 const home = flat(page("index.html"));
 const download = flat(page("download/index.html"));
+const privacy = flat(page("privacy/index.html"));
+const terms = flat(page("terms/index.html"));
 
 const HOME_COPY = [
   "Folio · Free stock and crypto portfolio tracker",
@@ -130,6 +132,8 @@ test("pages use relative paths, load nothing from another host, and claim nothin
   for (const [name, html] of [
     ["home", home],
     ["download", download],
+    ["privacy", privacy],
+    ["terms", terms],
   ]) {
     assert.doesNotMatch(
       html,
@@ -206,7 +210,7 @@ test("download page links both permanent installers and orders mac before window
 test("both pages ask for name and email with the same consent copy, and the newsletter is opt-in", () => {
   const consent = [
     "Join the Folio beta",
-    "Also send me the Folio newsletter",
+    "Also send me the Folio newsletter and marketing emails",
     "We’ll email you beta updates and the occasional feedback survey. Unsubscribe any time.",
   ];
   for (const [name, html] of [
@@ -224,7 +228,49 @@ test("both pages ask for name and email with the same consent copy, and the news
       assert.ok(html.includes(line), `${name} form is missing: ${line}`);
     // Pre-ticked marketing consent is not valid consent under UK GDPR.
     assert.doesNotMatch(html, /name="newsletter"[^>]*checked/);
+    assert.match(
+      html,
+      /gate-note[\s\S]*?href="(?:\.\.\/)?privacy\/"/,
+      `${name} form doesn't link the privacy notice`,
+    );
+    assert.match(
+      html,
+      /By downloading, you accept the <a href="(?:\.\.\/)?terms\/">terms of use/,
+      `${name} form doesn't link the terms`,
+    );
   }
+});
+
+test("the terms disclaim liability only as far as UK law allows", () => {
+  for (const line of [
+    "provided “as is”",
+    "is financial, investment, tax or legal advice",
+    "neither Sean nor anyone else involved in Folio is liable",
+    // Without this carve-out a court can strike the whole exclusion clause.
+    "cannot be limited or excluded by law, such as liability for death or personal injury caused by negligence, or for fraud",
+    "affects your statutory rights",
+  ])
+    assert.ok(terms.includes(line), `terms are missing: ${line}`);
+});
+
+test("the privacy notice covers what UK GDPR requires at the point of collection", () => {
+  for (const line of [
+    "is responsible for the details you give us",
+    "hello@delphi-engine.com",
+    "legitimate interest",
+    "with your consent",
+    "Web3Forms",
+    "outside the UK",
+    "How long we keep it",
+    "You can object at any time",
+    "Information Commissioner’s Office",
+  ])
+    assert.ok(privacy.includes(line), `privacy notice is missing: ${line}`);
+  assert.doesNotMatch(
+    privacy,
+    /\[[A-Z ]+\]/,
+    "privacy notice still has a placeholder",
+  );
 });
 
 test("replica holds four rows and leaves the unpriced holding out of the total", () => {
